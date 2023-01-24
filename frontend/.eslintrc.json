@@ -17,7 +17,7 @@
   },
   "plugins": ["react", "import"],
   "rules": {
-    "no-console": [ { "allow": ["warn", "error","log"] }],
+    "no-console": "off",
     "no-restricted-syntax": [
       "error",
       {
