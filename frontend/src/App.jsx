@@ -1,12 +1,10 @@
-import Home from "./pages/Home";
-
+import Cardfilm from "./components/cardfilm/Cardfilm";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Home />
-      <p>coucou</p>
+      <Cardfilm />
     </div>
   );
 }
