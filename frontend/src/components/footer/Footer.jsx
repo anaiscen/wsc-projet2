@@ -1,6 +1,11 @@
 import React from "react";
 import "./Footer.css";
 import logo from "./footer__image.jpg";
+import cedric from "./cedric.png";
+import anais from "./anais.png";
+import mehdi from "./mehdi.png";
+import nicolas from "./nicolas.png";
+import olga from "./olga.png";
 
 function Footer() {
   return (
@@ -12,19 +17,14 @@ function Footer() {
         <p className="footer__mentions footer__item">
           Données provenant de TMDB
         </p>
-        <label
-          htmlFor="footer__searchBar"
-          id="footer__label"
-          className="footer__item"
-        >
-          Recherche
-        </label>
-        <input
-          type="text"
-          id="footer__searchBar"
-          className="footer__item"
-          placeholder="Mon film, ma série"
-        />
+        <p className="footer__team footer__item">Créé par</p>
+        <p className="footer__avatars footer__team">
+          <img src={nicolas} alt="Nicolas" className="footer__avatar" />
+          <img src={anais} alt="Anaïs" className="footer__avatar" />
+          <img src={cedric} alt="Cédric" className="footer__avatar" />
+          <img src={olga} alt="Olga" className="footer__avatar" />
+          <img src={mehdi} alt="Mehdi" className="footer__avatar" />
+        </p>
         <a href="mailto: xxx@gmail.com" className="footer__item">
           Nous contacter
         </a>
