@@ -1,87 +1,52 @@
 .navigation {
-  position: relative;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  height: 60px;
-  width: 100%;
-  padding: 0.5rem 0rem;
+  padding: 10px 20px;
   background-color: #01214de7;
   color: #e2efff;
+}
+
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.navigation li {
+  margin: 0 10px;
+}
+
+.navigation a {
+  color: #e2efff;;
+  text-decoration: none;
   font-size: 3vh;
 }
 
-.navigation-menu {
-  margin-left: auto;
+.search-input {
+  padding: 10px 18px;
+  border-radius: 5px;
+  border: none;
+  background-color: #e2efff;;
+  color: #07588f;
+  margin-right: 20px;
 }
 
-.navigation-menu ul {
-  display: flex;
-  padding: 0;
-}
-
-.navigation-menu li {
-  list-style-type: none;
-  margin: 0 1rem;
-}
-
-.navigation-menu li a {
-  text-decoration: none;
-  display: block;
-  width: 100%;
-  color: #e2efff;
-}
-
-.hamburger {
-  border: 0;
-  height: 40px;
-  width: 40px;
-  padding: 0.5rem;
-  border-radius: 50%;
-  background-color: #e2efff;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  position: absolute;
-  top: 50%;
-  right: 25px;
-  transform: translateY(-50%);
-  display: none;
-}
-
-.hamburger:hover {
-  background-color: #01214de7;
-}
-
-@media screen and (max-width: 550px) {
-  .hamburger {
-    display: block;
-  }
-
-  .navigation-menu ul {
+@media (max-width: 768px) {
+  .navigation {
     flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 60px);
-    background-color: #e2efff;
-    display: none;
+    align-items: flex-start;
   }
-
-  .navigation-menu li {
-    text-align: center;
-    margin: 0;
-  }
-
-  .navigation-menu li a {
-    color: #01214de7;
-    width: 100%;
-    padding: 1.5rem 0;
-  }
-
-  .navigation-menu li:hover {
-    background-color: #e2efff;
-  }
-
-  .navigation-menu.expanded ul {
+  .navigation ul {
     display: block;
+    margin-bottom: 20px;
+  }
+  .navigation li {
+    margin: 10px 0;
+  }
+  .search-input {
+    margin-right: 0;
+    margin-top: 20px;
   }
 }
