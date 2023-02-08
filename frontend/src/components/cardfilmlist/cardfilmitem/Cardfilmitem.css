@@ -1,0 +1,21 @@
+.cardfilmitem {
+  border: 1px solid black;
+  max-width: 300px;
+  background-color: var(--background-color);
+}
+.cardfilm-poster {
+  width: 270px;
+  height: 400px;
+  margin: 5px;
+  border: 1px solid green;
+}
+.cardfilm-title {
+  color: var(--text-color);
+  text-align: center;
+}
+.cardfilmitem:hover,
+.cardfilmitem:focus {
+  background-color: var(--second-color);
+  transition: 0.3s;
+  box-shadow: 0 4px 6px var(--second-color);
+}
