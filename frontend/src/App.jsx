@@ -1,10 +1,10 @@
-import Cardfilm from "./components/cardfilm/Cardfilm";
+import CategoriesList from "./components/categories/CategoriesList";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Cardfilm />
+      <CategoriesList />
     </div>
   );
 }
