@@ -9,3 +9,6 @@
   --second-color: #4083c2;
   --text-color: #f5f5f5;
 }
+.App {
+  background: var(--background-color);
+}
