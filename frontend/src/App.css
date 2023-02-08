@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Livvic&display=swap");
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -8,6 +10,7 @@
   --background-color: #01214de7;
   --second-color: #07588f;
   --text-color: #e2efff;
+  --font-family: "Livvic", sans-serif;
 }
 .App {
   background: var(--background-color);
