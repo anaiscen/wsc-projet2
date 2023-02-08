@@ -1,5 +1,6 @@
 import React from "react";
 import "./Navbar.css";
+import Recherchbar from "./recherchebar/Recherchbar";
 
 function Navbar() {
   return (
@@ -13,11 +14,7 @@ function Navbar() {
             <a href="/série">Série</a>
           </li>
         </ul>
-        <input
-          type="text"
-          placeholder="Chercher sur Nacom"
-          className="search-input"
-        />
+        <Recherchbar />
       </nav>
     </div>
   );
