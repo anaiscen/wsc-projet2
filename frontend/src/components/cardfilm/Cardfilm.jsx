@@ -3,7 +3,7 @@ import React from "react";
 function Cardfilm() {
   return (
     <div>
-      <h1>HOLA</h1>
+      <h1>yo</h1>
     </div>
   );
 }
