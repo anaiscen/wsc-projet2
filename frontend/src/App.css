@@ -12,3 +12,6 @@
   --text-color: #e2efff;
   --font-family: "Livvic", sans-serif;
 }
+.App {
+  background: var(--background-color);
+}
