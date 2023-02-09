@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./carousel.css";
+import "./Carousel.css";
 
 function Carousel() {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [displayData, setDisplayData] = useState([]);
   const apiKey = "121fad3c6c9b7bc3d8e43ee646e86854";
 
   useEffect(() => {
@@ -24,19 +25,19 @@ function Carousel() {
     getApi();
   }, []);
 
+  useEffect(() => {
+    setDisplayData([...data, ...data]);
+  }, [data]);
+
   const handleNextClick = () => {
-    if (currentIndex + 10 < data.length) {
-      setCurrentIndex(currentIndex + 1);
-    }
+    setCurrentIndex((currentIndex + 1) % data.length);
   };
 
   const handlePreviousClick = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
+    setCurrentIndex((currentIndex + data.length - 1) % data.length);
   };
-
-  const filmsToShow = data.slice(currentIndex, currentIndex + 10);
+  const correctIndex = currentIndex % displayData.length;
+  const filmsToShow = displayData.slice(correctIndex, correctIndex + 10);
   return (
     <div className="carousel">
       <div className="carousel-container">
@@ -44,7 +45,6 @@ function Carousel() {
           <button
             className="carousel-button"
             type="button"
-            disabled={currentIndex === 0}
             onClick={handlePreviousClick}
           >
             <img src="/src/assets/arrow-left.svg" alt="" className="arrow" />
@@ -64,7 +64,6 @@ function Carousel() {
           <button
             className="carousel-button"
             type="button"
-            disabled={currentIndex + 10 >= data.length}
             onClick={handleNextClick}
           >
             <img src="/src/assets/arrow-right.svg" alt="" className="arrow" />
