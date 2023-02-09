@@ -1,0 +1,44 @@
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.carousel-container {
+  height: 250px;
+  display: flex;
+  margin: 0 10px;
+  width: 95vw;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.poster-container {
+  text-align: center;
+}
+
+.poster-img {
+  height: 100%;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+
+.carousel-button {
+  height: 100px;
+  width: 100px;
+  background-color: aqua;
+  border: 3px solid black;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+}
+.arrow {
+  height: 50px;
+}

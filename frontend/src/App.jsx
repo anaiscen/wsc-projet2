@@ -1,10 +1,10 @@
-import Cardfilm from "./components/cardfilm/Cardfilm";
 import "./App.css";
+import Carousel from "./components/carousel/Carousel";
 
 function App() {
   return (
     <div className="App">
-      <Cardfilm />
+      <Carousel />
     </div>
   );
 }
