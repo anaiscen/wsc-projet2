@@ -4,19 +4,19 @@ import Header from "./components/header/Header";
 import Cardfilmlist from "./components/cardfilmlist/Cardfilmlist";
 import "./App.css";
 import Footer from "./components/footer/Footer";
-import Filminfo from "./components/filminfo/Filminfo";
+// import Filminfo from "./components/filminfo/Filminfo";
 import Carousel from "./components/carousel/Carousel";
 
 function App() {
   return (
     <div className="App">
-      <Carousel />
-      <CategoriesList />
-      <Footer />
       <Header />
       <Navbar />
-      <Filminfo />
+      <Carousel />
+      <CategoriesList />
+      {/* <Filminfo /> */}
       <Cardfilmlist />
+      <Footer />
     </div>
   );
 }

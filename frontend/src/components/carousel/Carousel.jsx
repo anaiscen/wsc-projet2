@@ -6,14 +6,13 @@ function Carousel() {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
-  const apiKey = "121fad3c6c9b7bc3d8e43ee646e86854";
+  const url = import.meta.env.VITE_API_URL;
+  const keyUrl = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     const getApi = () => {
       axios
-        .get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=fr-FR&page=1`
-        )
+        .get(`${url}/movie/popular?api_key=${keyUrl}&language=fr-FR&page=1`)
         .then((response) => {
           setData(response.data.results);
         })
