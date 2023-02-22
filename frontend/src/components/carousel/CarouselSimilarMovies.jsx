@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import "./Carousel.css";
 
-function Carousel() {
+function CarouselSimilarMovies({ movieId }) {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
@@ -12,7 +13,7 @@ function Carousel() {
   useEffect(() => {
     const getApi = () => {
       axios
-        .get(`${url}/movie/upcoming?api_key=${keyUrl}&language=fr-FR&page=1`)
+        .get(`${url}/movie/${movieId}/similar?api_key=${keyUrl}&language=fr-FR`)
         .then((response) => {
           setData(response.data.results);
         })
@@ -37,8 +38,8 @@ function Carousel() {
   const correctIndex = currentIndex % displayData.length;
   const filmsToShow = displayData.slice(correctIndex, correctIndex + 10);
   return (
-    <div className="carousel">
-      <div className="carousel-container">
+    <div className="carousel-similar-movies">
+      <div className="carousel-similar-movies-container">
         <div className="button-container">
           <button
             className="carousel-button"
@@ -72,4 +73,8 @@ function Carousel() {
   );
 }
 
-export default Carousel;
+CarouselSimilarMovies.propTypes = {
+  movieId: PropTypes.number.isRequired,
+};
+
+export default CarouselSimilarMovies;

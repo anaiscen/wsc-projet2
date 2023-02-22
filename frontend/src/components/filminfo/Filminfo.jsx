@@ -1,7 +1,10 @@
 import React from "react";
+import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
 import "./Filminfo.css";
 
 function Filminfo() {
+  const movieId = 505642;
+
   return (
     <div className="filminfo">
       <div className="filminfo-first">
@@ -32,6 +35,9 @@ function Filminfo() {
           Provident aut debitis consectetur cupiditate maxime qui, aliquid
           facilis, quod, perferendis a quibusdam repellat reiciendis facere.
         </p>
+      </div>
+      <div className="similar-movies-carousel">
+        <CarouselSimilarMovies movieId={movieId} />
       </div>
     </div>
   );
