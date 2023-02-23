@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Cardfilmitem.css";
-import { Link } from "react-router-dom";
 
 function Cardfilmitem({ results }) {
   console.log(results);
@@ -27,12 +27,14 @@ function Cardfilmitem({ results }) {
 }
 
 Cardfilmitem.propTypes = {
-  results: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      poster_path: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-    })
-  ).isRequired,
+  results: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    original_title: PropTypes.string.isRequired,
+  }).isRequired,
 };
+
 export default Cardfilmitem;
