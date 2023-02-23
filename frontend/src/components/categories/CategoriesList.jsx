@@ -20,7 +20,7 @@ function CategoriesList({ setFilterMovie }) {
       .get(`${url}/genre/movie/list?api_key=${keyUrl}&language=fr`)
       .then((response) => {
         const genresDelete = response.data.genres.filter((genre) => {
-          return genre.name !== "Téléfilm";
+          return genre.id !== 10770;
         });
         setDataGenre(genresDelete);
         setIsLoading(true);

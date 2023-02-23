@@ -22,6 +22,3 @@ Categories.propTypes = {
 };
 
 export default Categories;
-
-// Lorsque je clique sur un bouton genre, la liste de film doit se mettre à jour
-// pour n'afficher que les films de ce genre
