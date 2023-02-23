@@ -10,7 +10,7 @@ const maincontainer = () => {
   const [listFilm, setListFilm] = useState([]);
 
   useEffect(() => {
-    const getApiGenre = `${url}/discover/movie?api_key=${keyUrl}&language=fr&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`;
+    const getApiGenre = `${url}/discover/movie?api_key=${keyUrl}&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`;
 
     axios
       .get(getApiGenre)

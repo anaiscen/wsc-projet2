@@ -19,7 +19,10 @@ function CategoriesList({ setFilterMovie }) {
     axios
       .get(`${url}/genre/movie/list?api_key=${keyUrl}&language=fr`)
       .then((response) => {
-        setDataGenre(response.data.genres);
+        const genresDelete = response.data.genres.filter((genre) => {
+          return genre.name !== "Téléfilm";
+        });
+        setDataGenre(genresDelete);
         setIsLoading(true);
         console.warn(response.data.genres);
       })
