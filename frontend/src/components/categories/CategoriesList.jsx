@@ -23,7 +23,6 @@ function CategoriesList({ categoryName }) {
         .then((response) => {
           setDataGenre(response.data.genres);
           setIsLoading(true);
-          console.warn(response.data.genres);
         })
         .catch((err) => {
           setAlert(true);
