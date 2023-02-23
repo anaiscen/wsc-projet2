@@ -1,11 +1,10 @@
 import React from "react";
 import "./Cardfilmlist.css";
-import Cardfilmitem from "./cardfilmitem/Cardfilmitem";
 
 function Cardfilmlist() {
   return (
     <div className="cardfilm">
-      <Cardfilmitem />
+      <h1>films</h1>
     </div>
   );
 }
