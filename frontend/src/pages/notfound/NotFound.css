@@ -1,0 +1,9 @@
+.main-titre {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-size: 50px;
+  text-align: center;
+}
+.title-click {
+  color: green;
+}
