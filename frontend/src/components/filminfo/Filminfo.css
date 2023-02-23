@@ -13,8 +13,6 @@
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #d9d9d9;
-
-  border: 1px solid red;
 }
 .filminfo-resume {
   max-width: 300px;
@@ -33,13 +31,17 @@
 }
 
 .filminfo-info {
-  max-width: 300px;
-  margin-bottom: 20px;
-  /* color: var(--text-color); */
-  background-color: #d9d9d9;
-
-  border: 1px solid gold;
+  margin-left: 100px;
+  margin-right: 100px;
+  display: block;
+  float: left;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
+/* .filminfo-box-video {
+  width: 100%;
+  height: 100%;
+} */
 .filminfo-retrouver {
   min-width: 300px;
   text-align: center;

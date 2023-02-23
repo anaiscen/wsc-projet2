@@ -30,7 +30,7 @@ function Films() {
       <div>
         {filmList ? (
           filmList.map((content) => (
-            <Cardfilmitem key={content.id} content={content} />
+            <Cardfilmitem key={content.id} results={content} />
           ))
         ) : (
           <p>Veuillez attendre</p>

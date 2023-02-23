@@ -23,12 +23,13 @@ function Series() {
     };
     getSeriesmList();
   }, []);
+
   return (
     <div>
       <h1>Series</h1>
       {seriesList ? (
         seriesList.map((content) => (
-          <Cardfilmitem key={content.id} content={content} />
+          <Cardfilmitem key={content.id} results={content} />
         ))
       ) : (
         <p>attendre</p>
