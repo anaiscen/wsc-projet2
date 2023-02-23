@@ -21,18 +21,18 @@
 .poster-img {
   height: 100%;
   margin: 0 10px;
-  border-radius: 10px;
 }
 
 .carousel-button {
-  height: 100px;
-  width: 100px;
-  background-color: aqua;
+  height: 50px;
+  width: 50px;
+  background-color: var(--second-color);
   border: 3px solid black;
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .button-container {
@@ -40,5 +40,39 @@
   align-items: center;
 }
 .arrow {
-  height: 50px;
+  height: 25px;
+}
+
+.carousel-similar-movies-container {
+  height: 150px;
+  display: flex;
+  margin: 0 10px;
+  width: 95vw;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.carousel-similar-movies {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 960px) {
+  .carousel-container {
+    height: 200px;
+  }
+}
+@media screen and (max-width: 460px) {
+  .carousel-container {
+    height: 150px;
+  }
+  .carousel-button {
+    height: 25px;
+    width: 25px;
+  }
+  .arrow {
+    height: 15px;
+  }
 }

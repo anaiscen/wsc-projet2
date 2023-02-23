@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
+import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
 import "./Filminfo.css";
 
 // const movieId = 505642;
@@ -44,6 +45,9 @@ function Filminfo() {
       <div className="filminfo-second">
         <p className="filminfo-info">{getDetails.overview}</p>
         {/* <p className="filminfo-resume">{getDetails.overview}</p> */}
+      </div>
+      <div className="similar-movies-carousel">
+        <CarouselSimilarMovies movieId={id} />
       </div>
     </div>
   );
