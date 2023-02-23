@@ -1,20 +1,14 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "./Categories.css";
 
-function Categories({ name }) {
-  const [filterFilm, setFilterFilm] = useState(false);
-
-  function showFilterFilmList() {
-    setFilterFilm(!filterFilm);
-  }
-
+function Categories({ name, setFilterMovie, id }) {
   return (
     <div>
       <button
         className="category-container"
         type="button"
-        onClick={showFilterFilmList}
+        value={id}
+        onClick={(e) => setFilterMovie(e.target.value)}
       >
         {name}
       </button>
@@ -23,6 +17,11 @@ function Categories({ name }) {
 }
 Categories.propTypes = {
   name: PropTypes.string.isRequired,
+  setFilterMovie: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default Categories;
+
+// Lorsque je clique sur un bouton genre, la liste de film doit se mettre à jour
+// pour n'afficher que les films de ce genre
