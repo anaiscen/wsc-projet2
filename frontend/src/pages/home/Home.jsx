@@ -1,14 +1,12 @@
 import React from "react";
 import Carousel from "../../components/carousel/Carousel";
-import CategoriesList from "../../components/categories/CategoriesList";
-import Cardfilmlist from "../../components/cardfilmlist/Cardfilmlist";
+import Maincontainer from "../../components/maincontainer/Maincontainer";
 
 function Home() {
   return (
     <div>
       <Carousel />
-      <CategoriesList />
-      <Cardfilmlist />
+      <Maincontainer />
     </div>
   );
 }

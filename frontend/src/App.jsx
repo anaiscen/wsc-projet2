@@ -19,7 +19,6 @@ function App() {
         <Route path="filminfo/:id" element={<Filminfo />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-
       <Footer />
     </div>
   );
