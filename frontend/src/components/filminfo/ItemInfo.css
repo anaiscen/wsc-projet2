@@ -1,5 +1,5 @@
-.filminfo,
-.filminfo-first {
+.ItemInfo,
+.ItemInfo-first {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,14 +7,14 @@
   min-width: 300px;
   background-color: var(--background-color);
 }
-.filminfo-poster {
+.ItemInfo-poster {
   min-width: 300px;
   height: 500px;
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #d9d9d9;
 }
-.filminfo-resume {
+.ItemInfo-resume {
   max-width: 300px;
   margin-bottom: 20px;
   /* color: var(--text-color); */
@@ -22,7 +22,7 @@
 
   border: 1px solid green;
 }
-.filminfo-video {
+.ItemInfo-video {
   min-width: 300px;
   margin-bottom: 20px;
   background-color: #d9d9d9;
@@ -30,19 +30,20 @@
   border: 1px solid blue;
 }
 
-.filminfo-info {
+.ItemInfo-info {
   margin-left: 100px;
   margin-right: 100px;
   display: block;
   float: left;
   color: var(--text-color);
+  font-family: var(--font-family);
   background-color: var(--background-color);
 }
-/* .filminfo-box-video {
+/* .ItemInfo-box-video {
   width: 100%;
   height: 100%;
 } */
-.filminfo-retrouver {
+.ItemInfo-retrouver {
   min-width: 300px;
   text-align: center;
   margin-bottom: 20px;
@@ -52,24 +53,24 @@
   border: 1px solid violet;
 }
 @media screen and (min-width: 786px) {
-  .filminfo-first {
+  .ItemInfo-first {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--background-color);
   }
-  .filminfo-poster {
+  .ItemInfo-poster {
     margin-right: 20px;
   }
-  .filminfo-second {
+  .ItemInfo-second {
     display: flex;
   }
-  .filminfo-info,
-  .filminfo-resume {
+  .ItemInfo-info,
+  .ItemInfo-resume {
     height: 220px;
     padding: 10px;
   }
-  .filminfo-info {
+  .ItemInfo-info {
     margin-right: 20px;
   }
 }

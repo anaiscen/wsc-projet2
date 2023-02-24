@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cardfilmitem from "../components/cardfilmlist/cardfilmitem/Cardfilmitem";
+import CardItem from "../components/cardfilmlist/cardItem/CardItem";
 
 function Films() {
   const url = import.meta.env.VITE_API_URL;
@@ -30,7 +30,7 @@ function Films() {
       <div>
         {filmList ? (
           filmList.map((content) => (
-            <Cardfilmitem key={content.id} results={content} />
+            <CardItem key={content.id} results={content} />
           ))
         ) : (
           <p>Veuillez attendre</p>

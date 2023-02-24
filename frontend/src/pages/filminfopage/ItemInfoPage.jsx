@@ -1,15 +1,15 @@
 import React from "react";
 
 import Carousel from "../../components/carousel/Carousel";
-import Filminfo from "../../components/filminfo/Filminfo";
+import ItemInfo from "../../components/filminfo/ItemInfo";
 
-function FilmInfoPage() {
+function ItemInfoPage() {
   return (
     <div>
-      <Filminfo />
+      <ItemInfo />
       <Carousel />
     </div>
   );
 }
 
-export default FilmInfoPage;
+export default ItemInfoPage;

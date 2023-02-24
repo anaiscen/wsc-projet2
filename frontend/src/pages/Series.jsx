@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Cardfilmitem from "../components/cardfilmlist/cardfilmitem/Cardfilmitem";
+import CardItem from "../components/cardfilmlist/cardItem/CardItem";
 
 function Series() {
   const url = import.meta.env.VITE_API_URL;
@@ -29,7 +29,7 @@ function Series() {
       <h1>Series</h1>
       {seriesList ? (
         seriesList.map((content) => (
-          <Cardfilmitem key={content.id} results={content} />
+          <CardItem key={content.id} results={content} />
         ))
       ) : (
         <p>attendre</p>

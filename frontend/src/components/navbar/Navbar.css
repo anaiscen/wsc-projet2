@@ -7,6 +7,14 @@
   color: #e2efff;
 }
 
+.choice-button {
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
 .navigation ul {
   list-style: none;
   margin: 0;

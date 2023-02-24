@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Cardfilmitem.css";
 
-function Cardfilmitem({ results }) {
+function CardItem({ results }) {
   console.log(results);
   return (
     <div className="cardfilmitem">
-      <Link to={`/filminfo/${results.id}`}>
+      <Link to={`/ItemInfo/${results.id}`}>
         <img
           src={`https://image.tmdb.org/t/p/w500${results.poster_path}`}
           alt={results.title}
@@ -15,7 +15,11 @@ function Cardfilmitem({ results }) {
         />
         <div className="title-box">
           <div className="cardfilm-title">
-            <h2 className="cardfilm-title-text">{results.title}</h2>
+            {results.title ? (
+              <h2 className="cardfilm-title-text">{results.title}</h2>
+            ) : (
+              <h2 className="cardfilm-title-text">{results.name}</h2>
+            )}
           </div>
           <div className="cardfilm-raiting">
             notation: {results.vote_average}
@@ -26,15 +30,15 @@ function Cardfilmitem({ results }) {
   );
 }
 
-Cardfilmitem.propTypes = {
+Cardfilmtem.propTypes = {
   results: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     vote_average: PropTypes.number.isRequired,
     poster_path: PropTypes.string.isRequired,
-    original_title: PropTypes.string.isRequired,
+    original_name: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default Cardfilmitem;
+export default CardItem;
