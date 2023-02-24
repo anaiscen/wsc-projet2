@@ -3,19 +3,15 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Categories from "./Categories";
 
-const genreName = {
-  genres: [{ id: 28, name: "Action" }],
-};
-
 function CategoriesList({ setFilterMovie }) {
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
 
-  const [dataGenre, setDataGenre] = useState([genreName]);
+  const [dataGenre, setDataGenre] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState(false);
 
-  const getApiGenre = () => {
+  useEffect(() => {
     axios
       .get(`${url}/genre/movie/list?api_key=${keyUrl}&language=fr`)
       .then((response) => {
@@ -30,10 +26,6 @@ function CategoriesList({ setFilterMovie }) {
         setAlert(true);
         console.warn(err);
       });
-  };
-
-  useEffect(() => {
-    getApiGenre();
   }, []);
 
   return (

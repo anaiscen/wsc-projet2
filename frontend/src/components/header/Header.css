@@ -1,25 +1,22 @@
 header {
   display: flex;
   align-items: flex-start;
-  padding: 20px;
-}
-
-.logo-container {
-  width: 20%;
-  text-align: center;
-}
-
-.logo-container img {
-  width: 150px;
-  margin-bottom: 20px;
+  padding: 5px;
 }
 
 .hero-photo {
-  width: 80%;
+  width: 100%;
 }
 
 .hero-photo img {
   width: 100%;
   height: 300px;
   object-fit: cover;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .hero-photo img {
+    width: 100%;
+    height: 130px;
+  }
 }
