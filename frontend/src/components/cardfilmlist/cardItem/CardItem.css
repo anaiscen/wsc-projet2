@@ -2,7 +2,7 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.cardfilmitem {
+.cardItem {
   border: 1px solid black;
   width: 250px;
   height: 450px;
@@ -22,8 +22,8 @@
   font-family: var(--font-family);
   font-size: 20px;
 }
-.cardfilmitem:hover,
-.cardfilmitem:focus {
+.cardItem:hover,
+.cardItem:focus {
   background-color: linear-gradient(
     0deg,
     var(--second-color) 0%,
@@ -34,6 +34,7 @@
 }
 .title-box {
   width: 100%;
+  height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
