@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
 import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
-import "./Filminfo.css";
+import "./ItemInfo.css";
 
 // const movieId = 505642;
 const url = import.meta.env.VITE_API_URL;
 const keyUrl = import.meta.env.VITE_API_KEY;
 
-function Filminfo() {
+function ItemInfo() {
   const [getDetails, setGetDetails] = useState([]);
   const [getVideo, setGetVideo] = useState([]);
   const { id } = useParams();
@@ -28,23 +28,23 @@ function Filminfo() {
       .catch((err) => console.warn(err));
   }, []);
   return (
-    <div className="filminfo">
-      <div className="filminfo-first">
+    <div className="ItemInfo">
+      <div className="ItemInfo-first">
         <img
           src={`https://image.tmdb.org/t/p/w500${getDetails.poster_path}`}
           alt="poster of movie"
-          className="filminfo-poster"
+          className="ItemInfo-poster"
         />
-        <div className="filminfo-box-video">
-          <YouTube videoId={getVideo.key} />
+        <div className="ItemInfo-box-video">
+          <YouTube videoId={getVideo?.key ? getVideo.key : null} />
 
-          <div className="filminfo-retrouver">A retrouver sur</div>
+          <div className="ItemInfo-retrouver">A retrouver sur</div>
         </div>
       </div>
 
-      <div className="filminfo-second">
-        <p className="filminfo-info">{getDetails.overview}</p>
-        {/* <p className="filminfo-resume">{getDetails.overview}</p> */}
+      <div className="ItemInfo-second">
+        <p className="ItemInfo-info">{getDetails.overview}</p>
+        {/* <p className="ItemInfo-resume">{getDetails.overview}</p> */}
       </div>
       <div className="similar-movies-carousel">
         <CarouselSimilarMovies movieId={id} />
@@ -53,4 +53,4 @@ function Filminfo() {
   );
 }
 
-export default Filminfo;
+export default ItemInfo;

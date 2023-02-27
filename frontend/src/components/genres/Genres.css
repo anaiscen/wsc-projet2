@@ -20,7 +20,7 @@
   padding: 5px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: clip;
+  text-overflow: ellipsis;
 }
 
 @media screen and (min-width: 768px) {

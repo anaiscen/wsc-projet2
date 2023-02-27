@@ -1,39 +1,43 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import Categories from "./Categories";
+import Genres from "./Genres";
 
-function CategoriesList({ setFilterMovie }) {
+function GenresList({ setFilterMovie, choice }) {
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
 
   const [dataGenre, setDataGenre] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState(false);
+  console.log(choice);
 
   useEffect(() => {
-    axios
-      .get(`${url}/genre/movie/list?api_key=${keyUrl}&language=fr`)
-      .then((response) => {
-        const genresDelete = response.data.genres.filter((genre) => {
-          return genre.id !== 10770;
+    const getApiGenre = () => {
+      axios
+        .get(`${url}/genre/${choice}/list?api_key=${keyUrl}&language=fr`)
+        .then((response) => {
+          const genresDelete = response.data.genres.filter((genre) => {
+            return genre.id !== 10770;
+          });
+          setDataGenre(genresDelete);
+          setIsLoading(true);
+          console.warn(response.data.genres);
+        })
+        .catch((err) => {
+          setAlert(true);
+          console.warn(err);
         });
-        setDataGenre(genresDelete);
-        setIsLoading(true);
-        console.warn(response.data.genres);
-      })
-      .catch((err) => {
-        setAlert(true);
-        console.warn(err);
-      });
-  }, []);
+    };
+    getApiGenre();
+  }, [choice]);
 
   return (
     <div className="categoryList-container">
       {alert ? <p>Une erreur est survenue</p> : null}
       {isLoading
         ? dataGenre.map((item) => (
-            <Categories
+            <Genres
               key={item.id}
               name={item.name}
               setFilterMovie={setFilterMovie}
@@ -45,8 +49,9 @@ function CategoriesList({ setFilterMovie }) {
   );
 }
 
-CategoriesList.propTypes = {
+GenresList.propTypes = {
   setFilterMovie: PropTypes.func.isRequired,
+  choice: PropTypes.func.isRequired,
 };
 
-export default CategoriesList;
+export default GenresList;

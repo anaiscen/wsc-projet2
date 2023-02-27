@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Carousel.css";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function Carousel() {
+function Carousel({ choice }) {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
@@ -12,7 +14,7 @@ function Carousel() {
   useEffect(() => {
     const getApi = () => {
       axios
-        .get(`${url}/movie/upcoming?api_key=${keyUrl}&language=fr-FR&page=1`)
+        .get(`${url}/${choice}/popular?api_key=${keyUrl}&language=fr-FR&page=1`)
         .then((response) => {
           setData(response.data.results);
         })
@@ -21,7 +23,7 @@ function Carousel() {
         });
     };
     getApi();
-  }, []);
+  }, [choice]);
 
   useEffect(() => {
     setDisplayData([...data, ...data]);
@@ -50,12 +52,14 @@ function Carousel() {
         </div>
         <div className="poster-container">
           {filmsToShow.map((film) => (
-            <img
-              key={film.id}
-              src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
-              alt="poster"
-              className="poster-img"
-            />
+            <Link to={`/ItemInfo/${film.id}`}>
+              <img
+                key={film.id}
+                src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
+                alt="poster"
+                className="poster-img"
+              />
+            </Link>
           ))}
         </div>
         <div className="button-container">
@@ -72,4 +76,7 @@ function Carousel() {
   );
 }
 
+Carousel.propTypes = {
+  choice: PropTypes.func.isRequired,
+};
 export default Carousel;

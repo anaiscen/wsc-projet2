@@ -1,35 +1,50 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CategoriesList from "../categories/CategoriesList";
-import Cardfilmlist from "../cardfilmlist/Cardfilmlist";
+import GenresList from "../genres/GenresList";
+import CardList from "../cardfilmlist/CardList";
+import Navbar from "../navbar/Navbar";
+import Carousel from "../carousel/Carousel";
 
 function Maincontainer() {
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
   const [filterMovie, setFilterMovie] = useState(null);
-  const [listFilm, setListFilm] = useState([]);
-  // const [page, setPage] = useState();
+  const [listItem, setListItem] = useState([]);
+  const [choice, setChoice] = useState("movie");
+  const [urlApi, setUrlApi] = useState(
+    `${url}/discover/${choice}?api_key=${keyUrl}&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
+  );
 
   useEffect(() => {
-    const getApiGenre = `${url}/discover/movie?api_key=${keyUrl}&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false&page=&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`;
+    const getApiGenre = urlApi;
 
     axios
       .get(getApiGenre)
       .then((response) => {
         console.warn(response.data);
-        setListFilm(response.data.results);
+        setListItem(response.data.results);
       })
       .catch((err) => {
         console.error(err);
       });
-  }, [filterMovie]);
+  }, [filterMovie, urlApi]);
+
+  useEffect(() => {
+    setUrlApi(
+      `${url}/discover/${choice}?api_key=${keyUrl}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
+    );
+  }, [choice, filterMovie]);
 
   return (
     <div>
-      <CategoriesList setFilterMovie={setFilterMovie} />
-      <Cardfilmlist listFilm={listFilm} />
+      <Navbar setChoice={setChoice} />
+      <Carousel choice={choice} />
+      <GenresList setFilterMovie={setFilterMovie} choice={choice} />
+      <CardList listItem={listItem} />
     </div>
   );
 }
 
 export default Maincontainer;
+
+// passer setUrlApi en props dans Navbar
