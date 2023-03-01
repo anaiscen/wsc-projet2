@@ -18,8 +18,15 @@
   text-align: center;
 }
 
-.poster-img {
+.poster-img-carousel-similar {
   height: 100%;
+  width: 100px;
+  margin: 0 10px;
+}
+
+.poster-img-carousel {
+  height: 100%;
+  width: 140px;
   margin: 0 10px;
 }
 

@@ -13,6 +13,7 @@ function ItemInfo() {
   const [getDetails, setGetDetails] = useState([]);
   const [getVideo, setGetVideo] = useState([]);
   const { id } = useParams();
+  // const [getId, setGetId] = useState(id);
   useEffect(() => {
     axios
       .get(`${url}/movie/${id}?api_key=${keyUrl}&language=fr-FR`)
@@ -47,7 +48,10 @@ function ItemInfo() {
         {/* <p className="ItemInfo-resume">{getDetails.overview}</p> */}
       </div>
       <div className="similar-movies-carousel">
-        <CarouselSimilarMovies movieId={id} />
+        <CarouselSimilarMovies
+          movieId={parseInt(id, 10)}
+          // setMovieId={setGetId}
+        />
       </div>
     </div>
   );

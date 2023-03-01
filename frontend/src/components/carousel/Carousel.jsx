@@ -57,7 +57,7 @@ function Carousel({ choice }) {
                 key={film.id}
                 src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
                 alt="poster"
-                className="poster-img"
+                className="poster-img-carousel"
               />
             </Link>
           ))}

@@ -38,6 +38,10 @@ function CarouselSimilarMovies({ movieId }) {
   const handlePreviousClick = () => {
     setCurrentIndex((currentIndex + data.length - 1) % data.length);
   };
+  // const handleMovieId = (film) => {
+  //   setMovieId(film.id);
+  //   console.log(film.id);
+  // };
   const correctIndex = currentIndex % displayData.length;
   const filmsToShow = displayData.slice(correctIndex, correctIndex + 10);
   console.log(filmsToShow);
@@ -55,12 +59,16 @@ function CarouselSimilarMovies({ movieId }) {
         </div>
         <div className="poster-container">
           {filmsToShow.map((film) => (
-            <Link to={`/ItemInfo/${film.id}`}>
+            <Link
+              key={film.id}
+              to={`/ItemInfo/${film.id}`}
+              // onClick={() => handleMovieId(film)}
+            >
               <img
                 key={film.id}
                 src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
                 alt="poster"
-                className="poster-img"
+                className="poster-img-carousel-similar"
               />
             </Link>
           ))}
@@ -81,6 +89,7 @@ function CarouselSimilarMovies({ movieId }) {
 
 CarouselSimilarMovies.propTypes = {
   movieId: PropTypes.number.isRequired,
+  // setMovieId: PropTypes.func.isRequired,
 };
 
 export default CarouselSimilarMovies;
