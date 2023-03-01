@@ -7,11 +7,11 @@
   border: 0;
 }
 :root {
-  --background-color: #01214de7;
+  --background-color: #01214d;
   --second-color: #07588f;
   --text-color: #e2efff;
   --font-family: "Livvic", sans-serif;
 }
 .App {
-  background: var(--background-color);
+  background-color: var(--background-color);
 }

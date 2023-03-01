@@ -19,12 +19,16 @@ function Pagination({ pagination, setPagination }) {
     }
   };
 
-  const pageNumbers = [];
+  let startIndex = pagination - Math.floor(pageDisplay / 2);
+  if (startIndex < minPage) {
+    startIndex = minPage;
+  } else if (startIndex + pageDisplay > maxPage) {
+    startIndex = maxPage - pageDisplay + 1;
+  }
 
-  for (let i = pagination; i <= pagination + pageDisplay - 1; i += 1) {
-    if (i >= minPage && i <= maxPage) {
-      pageNumbers.push(i);
-    }
+  const pageNumbers = [];
+  for (let i = startIndex; i <= startIndex + pageDisplay - 1; i += 1) {
+    pageNumbers.push(i);
   }
 
   return (

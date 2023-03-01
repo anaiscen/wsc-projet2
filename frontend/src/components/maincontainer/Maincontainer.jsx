@@ -40,13 +40,13 @@ function Maincontainer() {
   }, [choice, filterMovie, pagination]);
 
   return (
-    <div>
+    <main>
       <Navbar setChoice={setChoice} />
       <Carousel choice={choice} />
       <GenresList setFilterMovie={setFilterMovie} choice={choice} />
       <CardList listItem={listItem} />
       <Pagination pagination={pagination} setPagination={setPagination} />
-    </div>
+    </main>
   );
 }
 
