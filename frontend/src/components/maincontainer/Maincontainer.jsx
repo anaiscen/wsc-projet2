@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Pagination from "../pagination/Pagination";
 import GenresList from "../genres/GenresList";
 import CardList from "../cardfilmlist/CardList";
 import Navbar from "../navbar/Navbar";
@@ -11,8 +12,10 @@ function Maincontainer() {
   const [filterMovie, setFilterMovie] = useState(null);
   const [listItem, setListItem] = useState([]);
   const [choice, setChoice] = useState("movie");
+  const [pagination, setPagination] = useState(1);
+
   const [urlApi, setUrlApi] = useState(
-    `${url}/discover/${choice}?api_key=${keyUrl}&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
+    `${url}/discover/${choice}?api_key=${keyUrl}&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pagination}&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
   );
 
   useEffect(() => {
@@ -23,6 +26,7 @@ function Maincontainer() {
       .then((response) => {
         console.warn(response.data);
         setListItem(response.data.results);
+        setPagination(response.data.page);
       })
       .catch((err) => {
         console.error(err);
@@ -31,9 +35,9 @@ function Maincontainer() {
 
   useEffect(() => {
     setUrlApi(
-      `${url}/discover/${choice}?api_key=${keyUrl}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
+      `${url}/discover/${choice}?api_key=${keyUrl}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pagination}&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
     );
-  }, [choice, filterMovie]);
+  }, [choice, filterMovie, pagination]);
 
   return (
     <div>
@@ -41,6 +45,7 @@ function Maincontainer() {
       <Carousel choice={choice} />
       <GenresList setFilterMovie={setFilterMovie} choice={choice} />
       <CardList listItem={listItem} />
+      <Pagination pagination={pagination} setPagination={setPagination} />
     </div>
   );
 }
