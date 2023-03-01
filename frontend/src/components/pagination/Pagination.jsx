@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./Pagination.css";
 
 function Pagination({ pagination, setPagination }) {
   const maxPage = 500;
   const minPage = 1;
   const pageDisplay = 10;
-  // const currentPage = pagination;
-  // const index = currentPage * pageDisplay /
 
   const handlePagination = () => {
     if (pagination > 1) {
@@ -19,21 +18,32 @@ function Pagination({ pagination, setPagination }) {
       setPagination(pagination + 1);
     }
   };
-  // Faire une boucle qui calcule le gap de page entre la plus petite et la plus grande des dix pages qui l'entourent
-  // const pagesNumber = (page) => {
-  //   for (let i = { pagination }; minPage >= i >= maxPage; i += 1) {
-  //     page.map(pageDisplay);
-  //   }
-  //   console.warn(pagesNumber);
-  // };
+
+  const pageNumbers = [];
+
+  for (let i = pagination; i <= pagination + pageDisplay - 1; i += 1) {
+    if (i >= minPage && i <= maxPage) {
+      pageNumbers.push(i);
+    }
+  }
+
   return (
-    <div>
-      <button type="button" onClick={handlePagination}>
-        {minPage}
+    <div className="change-page-container">
+      <button type="button" className="btn-page" onClick={handlePagination}>
+        Previous Page
       </button>
-      <p>{pageDisplay}</p>
-      <button type="button" onClick={handlePaginationNext}>
-        {maxPage}
+      {pageNumbers.map((page) => (
+        <button
+          type="button"
+          className="btn-page"
+          key={page}
+          onClick={() => setPagination(page)}
+        >
+          {page}
+        </button>
+      ))}
+      <button type="button" className="btn-page" onClick={handlePaginationNext}>
+        Next Page
       </button>
     </div>
   );
