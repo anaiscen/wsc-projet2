@@ -13,7 +13,6 @@ function Navbar({ setChoice }) {
   };
   const changeChoiceMovie = () => {
     setChoice("movie");
-    console.log("COUCOU");
   };
   return (
     <div>
