@@ -39,7 +39,7 @@ function Pagination({ pagination, setPagination }) {
       {pageNumbers.map((page) => (
         <button
           type="button"
-          className="btn-page"
+          className={`btn-page ${page === pagination ? "active" : ""}`}
           key={page}
           onClick={() => setPagination(page)}
         >

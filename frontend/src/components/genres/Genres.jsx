@@ -1,24 +1,24 @@
 import PropTypes from "prop-types";
 import "./Genres.css";
 
-function Genres({ name, setFilterMovie, id }) {
+function Genres({ name, onClick, id, isActive }) {
   return (
     <div>
       {id === 10765 ? (
         <button
-          className="category-container"
+          className={`category-container ${isActive ? "active" : ""}`}
           type="button"
           value={id}
-          onClick={(e) => setFilterMovie(e.target.value)}
+          onClick={onClick}
         >
           SF & Fantastique
         </button>
       ) : (
         <button
-          className="category-container"
+          className={`category-container ${isActive ? "active" : ""}`}
           type="button"
           value={id}
-          onClick={(e) => setFilterMovie(e.target.value)}
+          onClick={onClick}
         >
           {name}
         </button>
@@ -26,10 +26,12 @@ function Genres({ name, setFilterMovie, id }) {
     </div>
   );
 }
+
 Genres.propTypes = {
   name: PropTypes.string.isRequired,
-  setFilterMovie: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  isActive: PropTypes.string.isRequired,
 };
 
 export default Genres;
