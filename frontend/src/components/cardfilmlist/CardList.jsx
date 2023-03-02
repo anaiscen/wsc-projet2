@@ -6,9 +6,13 @@ import CardItem from "./cardItem/CardItem";
 function CardList({ listItem }) {
   return (
     <div className="cardfilm">
-      {listItem.map((film) => {
-        return <CardItem key={film.id} results={film} />;
-      })}
+      {listItem.length > 0 ? (
+        listItem.map((film) => {
+          return <CardItem key={film.id} results={film} />;
+        })
+      ) : (
+        <div className="no-results-message">Aucun résultat trouvé</div>
+      )}
     </div>
   );
 }
