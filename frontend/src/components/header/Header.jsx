@@ -6,7 +6,7 @@ import photo from "./banner.png";
 function Header() {
   return (
     <header>
-      <div className="hero-photo">
+      <div className="hero-photo" id="header">
         <Link to="/">
           <img src={photo} alt="Bannière" />
         </Link>

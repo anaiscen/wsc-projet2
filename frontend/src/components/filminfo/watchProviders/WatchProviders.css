@@ -1,0 +1,13 @@
+.provider__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+}
+.provider__name {
+  margin-bottom: 10px;
+}
+.provider__image {
+  width: 200px;
+  height: 170px;
+}

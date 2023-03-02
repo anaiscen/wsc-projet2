@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import logo from "./footer__image.jpg";
+import banner from "../header/banner.png";
 import cedric from "./cedric.png";
 import anais from "./anais.png";
 import mehdi from "./mehdi.png";
@@ -10,7 +10,7 @@ import olga from "./olga.png";
 function Footer() {
   return (
     <footer className="footer">
-      <img src={logo} alt="logo" className="footer__logo" />
+      <img src={banner} alt="logo" className="footer__logo" />
       <div className="footer__container">
         <p className="footer__p footer__item">Moviscope</p>
 

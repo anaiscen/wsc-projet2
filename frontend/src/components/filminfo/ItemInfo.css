@@ -52,6 +52,9 @@
 
   border: 1px solid violet;
 }
+.ItemInfo-retrouver-sur {
+  font-size: 30px;
+}
 @media screen and (min-width: 786px) {
   .ItemInfo-first {
     display: flex;
