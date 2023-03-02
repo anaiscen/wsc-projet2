@@ -6,15 +6,14 @@ import Genres from "./Genres";
 
 function GenresList({ setFilterMovie }) {
   const { choice } = useChoice();
-  const genreName = {
-    genres: [{ id: 28, name: "Action" }],
-  };
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
 
-  const [dataGenre, setDataGenre] = useState([genreName]);
+  const [dataGenre, setDataGenre] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState(false);
+  const [selectedGenreId, setSelectedGenreId] = useState(null);
+
   console.log(choice);
 
   useEffect(() => {
@@ -37,6 +36,11 @@ function GenresList({ setFilterMovie }) {
     getApiGenre();
   }, [choice]);
 
+  const handleGenreClick = (genreId) => {
+    setSelectedGenreId(genreId);
+    setFilterMovie(genreId);
+  };
+
   return (
     <div className="categoryList-container">
       {alert ? <p>Une erreur est survenue</p> : null}
@@ -45,8 +49,9 @@ function GenresList({ setFilterMovie }) {
             <Genres
               key={item.id}
               name={item.name}
-              setFilterMovie={setFilterMovie}
               id={item.id}
+              onClick={() => handleGenreClick(item.id)}
+              isActive={item.id === selectedGenreId}
             />
           ))
         : null}
