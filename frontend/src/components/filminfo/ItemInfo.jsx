@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useChoice } from "../../contexts/ChoiceContext";
 import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
 import "./ItemInfo.css";
 import trailermanquant from "../../assets/trailermanquant.png";
@@ -12,18 +13,18 @@ function ItemInfo() {
   const [getDetails, setGetDetails] = useState([]);
   const [getVideo, setGetVideo] = useState([]);
   const { id } = useParams();
+  const { choice } = useChoice();
   const videoId = getVideo?.key ? getVideo.key : null;
 
   useEffect(() => {
     axios
-      .get(`${url}/movie/${id}?api_key=${keyUrl}&language=fr-FR`)
+      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=fr-FR`)
       .then((response) => setGetDetails(response.data))
       .catch((err) => console.warn(err));
-  }, []);
-
+  }, [id]);
   useEffect(() => {
     axios
-      .get(`${url}/movie/${id}/videos?api_key=${keyUrl}`)
+      .get(`${url}/${choice}/${id}/videos?api_key=${keyUrl}`)
       .then((resp) => {
         const ofTrailer = resp.data.results.find(
           (vid) => vid.name === "Official Trailer"
@@ -41,8 +42,7 @@ function ItemInfo() {
         }
       })
       .catch((err) => console.warn(err));
-  }, []);
-
+  }, [id]);
   return (
     <div className="ItemInfo">
       <div className="ItemInfo-first">
@@ -71,10 +71,9 @@ function ItemInfo() {
       </div>
 
       <div className="similar-movies-carousel">
-        <CarouselSimilarMovies movieId={id} />
+        <CarouselSimilarMovies movieId={parseInt(id, 10)} />
       </div>
     </div>
   );
 }
-
 export default ItemInfo;

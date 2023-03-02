@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useChoice } from "../../contexts/ChoiceContext";
 import Pagination from "../pagination/Pagination";
 import GenresList from "../genres/GenresList";
 import CardList from "../cardfilmlist/CardList";
@@ -11,7 +12,7 @@ function Maincontainer() {
   const keyUrl = import.meta.env.VITE_API_KEY;
   const [filterMovie, setFilterMovie] = useState(null);
   const [listItem, setListItem] = useState([]);
-  const [choice, setChoice] = useState("movie");
+  const { choice } = useChoice();
   const [pagination, setPagination] = useState(1);
 
   const [urlApi, setUrlApi] = useState(
@@ -41,9 +42,9 @@ function Maincontainer() {
 
   return (
     <div>
-      <Navbar setChoice={setChoice} setUrlApi={setUrlApi} />
-      <Carousel choice={choice} />
-      <GenresList setFilterMovie={setFilterMovie} choice={choice} />
+      <Navbar setUrlApi={setUrlApi} />
+      <Carousel />
+      <GenresList setFilterMovie={setFilterMovie} />
       <CardList listItem={listItem} />
       <Pagination pagination={pagination} setPagination={setPagination} />
     </div>
