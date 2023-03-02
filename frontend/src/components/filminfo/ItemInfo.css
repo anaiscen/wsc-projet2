@@ -9,40 +9,37 @@
 }
 .ItemInfo-poster {
   min-width: 300px;
-  height: 500px;
+  width: 70%;
+  height: 70%;
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #d9d9d9;
 }
-.ItemInfo-resume {
-  max-width: 300px;
-  margin-bottom: 20px;
-  /* color: var(--text-color); */
-  background-color: #d9d9d9;
-
-  border: 1px solid green;
-}
-.ItemInfo-video {
-  min-width: 300px;
-  margin-bottom: 20px;
-  background-color: #d9d9d9;
-
-  border: 1px solid blue;
-}
 
 .ItemInfo-info {
-  margin-left: 100px;
-  margin-right: 100px;
+  width: 80%;
+  /* margin-left: 20px;
+  margin-right: 20px; */
+  margin-bottom: 30px;
   display: block;
-  float: left;
+  text-align: justify;
+  /* float: left; */
   color: var(--text-color);
   font-family: var(--font-family);
   background-color: var(--background-color);
 }
-/* .ItemInfo-box-video {
-  width: 100%;
-  height: 100%;
-} */
+
+.video-responsive iframe {
+  height: 170px;
+  width: 300px;
+  margin-bottom: 15px;
+}
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .ItemInfo-retrouver {
   min-width: 300px;
   text-align: center;
@@ -52,25 +49,43 @@
 
   border: 1px solid violet;
 }
+@media screen and (min-width: 426px) and (max-width: 785px) {
+  .video-responsive iframe {
+    height: 270px;
+    width: 540px;
+  }
+  .ItemInfo-info {
+    width: 70%;
+  }
+}
 @media screen and (min-width: 786px) {
   .ItemInfo-first {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--background-color);
+    align-items: flex-start;
   }
   .ItemInfo-poster {
+    width: 400px;
     margin-right: 20px;
   }
-  .ItemInfo-second {
-    display: flex;
+  .video-responsive {
+    margin-top: 20px;
   }
-  .ItemInfo-info,
-  .ItemInfo-resume {
-    height: 220px;
-    padding: 10px;
+  .video-responsive iframe {
+    height: 270px;
+    width: 500px;
   }
   .ItemInfo-info {
-    margin-right: 20px;
+    width: 500px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    display: block;
+    float: left;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    background-color: var(--background-color);
   }
 }

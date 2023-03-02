@@ -40,16 +40,14 @@ function Maincontainer() {
   }, [choice, filterMovie, pagination]);
 
   return (
-    <main>
-      <Navbar setChoice={setChoice} />
+    <div>
+      <Navbar setChoice={setChoice} setUrlApi={setUrlApi} />
       <Carousel choice={choice} />
       <GenresList setFilterMovie={setFilterMovie} choice={choice} />
       <CardList listItem={listItem} />
       <Pagination pagination={pagination} setPagination={setPagination} />
-    </main>
+    </div>
   );
 }
 
 export default Maincontainer;
-
-// passer setUrlApi en props dans Navbar
