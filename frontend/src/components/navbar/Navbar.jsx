@@ -1,13 +1,13 @@
 import React from "react";
 import "./Navbar.css";
-import PropTypes from "prop-types";
+import { useChoice } from "../../contexts/ChoiceContext";
 import Recherchbar from "./recherchebar/Recherchbar";
 
 // retenter avec axios dans useEffect
 // route au click sur film/serie
 // call API au chargement de la page
-function Navbar({ setChoice }) {
-  console.log(typeof setChoice);
+function Navbar() {
+  const { setChoice } = useChoice();
   const changeChoiceTV = () => {
     setChoice("tv");
   };
@@ -44,9 +44,6 @@ function Navbar({ setChoice }) {
   );
 }
 
-Navbar.propTypes = {
-  setChoice: PropTypes.func.isRequired,
-};
 export default Navbar;
 
 // mettre le code de recherche bar ici + faire remonter le nouvel url avec setUrlApi

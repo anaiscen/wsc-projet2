@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useChoice } from "../../contexts/ChoiceContext";
 import Genres from "./Genres";
 
-function GenresList({ setFilterMovie, choice }) {
+function GenresList({ setFilterMovie }) {
+  const { choice } = useChoice();
   const genreName = {
     genres: [{ id: 28, name: "Action" }],
   };
@@ -54,7 +56,6 @@ function GenresList({ setFilterMovie, choice }) {
 
 GenresList.propTypes = {
   setFilterMovie: PropTypes.func.isRequired,
-  choice: PropTypes.func.isRequired,
 };
 
 export default GenresList;

@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./Carousel.css";
 import { Link } from "react-router-dom";
+import { useChoice } from "../../contexts/ChoiceContext";
+import postermanquant from "../../assets/postermanquant.png";
 
 function CarouselSimilarMovies({ movieId }) {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
+  const { choice } = useChoice();
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
 
@@ -15,7 +18,7 @@ function CarouselSimilarMovies({ movieId }) {
     const getApi = () => {
       axios
         .get(
-          `${url}/movie/${movieId}/similar?api_key=${keyUrl}&language=fr-FR&page=1`
+          `${url}/${choice}/${movieId}/similar?api_key=${keyUrl}&language=fr-FR&page=1`
         )
         .then((response) => {
           setData(response.data.results);
@@ -25,7 +28,7 @@ function CarouselSimilarMovies({ movieId }) {
         });
     };
     getApi();
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     setDisplayData([...data, ...data]);
@@ -38,58 +41,63 @@ function CarouselSimilarMovies({ movieId }) {
   const handlePreviousClick = () => {
     setCurrentIndex((currentIndex + data.length - 1) % data.length);
   };
-  // const handleMovieId = (film) => {
-  //   setMovieId(film.id);
-  //   console.log(film.id);
-  // };
+
+  const preventClick = (e) => {
+    e.preventDefault();
+  };
+  // console.log(displayData);
   const correctIndex = currentIndex % displayData.length;
   const filmsToShow = displayData.slice(correctIndex, correctIndex + 10);
-  console.log(filmsToShow);
   return (
     <div className="carousel-similar-movies">
-      <div className="carousel-similar-movies-container">
-        <div className="button-container">
-          <button
-            className="carousel-button"
-            type="button"
-            onClick={handlePreviousClick}
-          >
-            <img src="/src/assets/arrow-left.svg" alt="" className="arrow" />
-          </button>
-        </div>
-        <div className="poster-container">
-          {filmsToShow.map((film) => (
-            <Link
-              key={film.id}
-              to={`/ItemInfo/${film.id}`}
-              // onClick={() => handleMovieId(film)}
+      {filmsToShow.length > 0 ? (
+        <div className="carousel-similar-movies-container">
+          <div className="button-container">
+            <button
+              className="carousel-button"
+              type="button"
+              onClick={handlePreviousClick}
             >
-              <img
-                key={film.id}
-                src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
-                alt="poster"
-                className="poster-img-carousel-similar"
-              />
-            </Link>
-          ))}
+              <img src="/src/assets/arrow-left.svg" alt="" className="arrow" />
+            </button>
+          </div>
+          <div className="poster-container">
+            {filmsToShow.map((film) =>
+              film.poster_path !== null ? (
+                <Link key={film.id} to={`/ItemInfo/${film.id}`}>
+                  <img
+                    key={film.id}
+                    src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
+                    alt="poster"
+                    className="poster-img-carousel-similar"
+                  />
+                </Link>
+              ) : (
+                <img
+                  src={postermanquant}
+                  className="poster-img-carousel-similar"
+                  alt={`${choice} introuvable`}
+                />
+              )
+            )}
+          </div>
+          <div className="button-container">
+            <button
+              className="carousel-button"
+              type="button"
+              onClick={handleNextClick}
+            >
+              <img src="/src/assets/arrow-right.svg" alt="" className="arrow" />
+            </button>
+          </div>
         </div>
-        <div className="button-container">
-          <button
-            className="carousel-button"
-            type="button"
-            onClick={handleNextClick}
-          >
-            <img src="/src/assets/arrow-right.svg" alt="" className="arrow" />
-          </button>
-        </div>
-      </div>
+      ) : null}
     </div>
   );
 }
 
 CarouselSimilarMovies.propTypes = {
   movieId: PropTypes.number.isRequired,
-  // setMovieId: PropTypes.func.isRequired,
 };
 
 export default CarouselSimilarMovies;

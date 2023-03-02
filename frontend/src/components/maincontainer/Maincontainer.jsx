@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useChoice } from "../../contexts/ChoiceContext";
 import GenresList from "../genres/GenresList";
 import CardList from "../cardfilmlist/CardList";
 import Navbar from "../navbar/Navbar";
@@ -10,7 +11,7 @@ function Maincontainer() {
   const keyUrl = import.meta.env.VITE_API_KEY;
   const [filterMovie, setFilterMovie] = useState(null);
   const [listItem, setListItem] = useState([]);
-  const [choice, setChoice] = useState("movie");
+  const { choice } = useChoice();
   const [urlApi, setUrlApi] = useState(
     `${url}/discover/${choice}?api_key=${keyUrl}&language=fr-FR&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
   );
@@ -37,9 +38,9 @@ function Maincontainer() {
 
   return (
     <div>
-      <Navbar setChoice={setChoice} />
-      <Carousel choice={choice} />
-      <GenresList setFilterMovie={setFilterMovie} choice={choice} />
+      <Navbar />
+      <Carousel />
+      <GenresList setFilterMovie={setFilterMovie} />
       <CardList listItem={listItem} />
     </div>
   );

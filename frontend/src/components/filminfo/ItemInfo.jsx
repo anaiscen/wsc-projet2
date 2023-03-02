@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import YouTube from "react-youtube";
+import { useChoice } from "../../contexts/ChoiceContext";
 import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
 import "./ItemInfo.css";
 
@@ -13,21 +14,21 @@ function ItemInfo() {
   const [getDetails, setGetDetails] = useState([]);
   const [getVideo, setGetVideo] = useState([]);
   const { id } = useParams();
-  // const [getId, setGetId] = useState(id);
+  const { choice } = useChoice();
   useEffect(() => {
     axios
-      .get(`${url}/movie/${id}?api_key=${keyUrl}&language=fr-FR`)
+      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=fr-FR`)
       .then((response) => setGetDetails(response.data))
       .catch((err) => console.warn(err));
-  }, []);
+  }, [id]);
   useEffect(() => {
     axios
-      .get(`${url}/movie/${id}/videos?api_key=${keyUrl}`)
+      .get(`${url}/${choice}/${id}/videos?api_key=${keyUrl}`)
       .then((resp) => {
         setGetVideo(resp.data.results[0]);
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [id]);
   return (
     <div className="ItemInfo">
       <div className="ItemInfo-first">
@@ -37,7 +38,9 @@ function ItemInfo() {
           className="ItemInfo-poster"
         />
         <div className="ItemInfo-box-video">
-          <YouTube videoId={getVideo?.key ? getVideo.key : null} />
+          <div className="video">
+            <YouTube videoId={getVideo?.key ? getVideo.key : null} />
+          </div>
 
           <div className="ItemInfo-retrouver">A retrouver sur</div>
         </div>
@@ -45,16 +48,11 @@ function ItemInfo() {
 
       <div className="ItemInfo-second">
         <p className="ItemInfo-info">{getDetails.overview}</p>
-        {/* <p className="ItemInfo-resume">{getDetails.overview}</p> */}
       </div>
       <div className="similar-movies-carousel">
-        <CarouselSimilarMovies
-          movieId={parseInt(id, 10)}
-          // setMovieId={setGetId}
-        />
+        <CarouselSimilarMovies movieId={parseInt(id, 10)} />
       </div>
     </div>
   );
 }
-
 export default ItemInfo;
