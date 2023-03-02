@@ -38,11 +38,12 @@ function Maincontainer() {
     setUrlApi(
       `${url}/discover/${choice}?api_key=${keyUrl}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pagination}&with_genres=${filterMovie}&with_watch_monetization_types=flatrate`
     );
+    setFilterMovie(null);
   }, [choice, filterMovie, pagination]);
 
   return (
     <div>
-      <Navbar setUrlApi={setUrlApi} />
+      <Navbar setUrlApi={setUrlApi} filterMovie={setFilterMovie} />
       <Carousel />
       <GenresList setFilterMovie={setFilterMovie} />
       <CardList listItem={listItem} />
