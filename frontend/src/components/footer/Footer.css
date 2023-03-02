@@ -18,6 +18,10 @@ a {
   border-radius: 15px;
   box-shadow: 1px 1px 15px blueviolet;
 }
+.footer__logo:hover {
+  transform: scale(1.07);
+  transition: transform 500ms ease-out;
+}
 .footer__container {
   display: flex;
   flex-direction: column;
@@ -26,28 +30,12 @@ a {
   height: auto;
   padding: 5px 15px;
 }
-.footer__team {
-  cursor: pointer;
-}
+
 .footer__team:hover {
   font-size: 15px;
   transition: all 300ms ease-in;
 }
-.footer__team:active + .footer__avatars {
-  display: block;
-  text-align: center;
-}
 
-.footer__avatars {
-  display: none;
-  width: 100%;
-}
-.footer__avatar {
-  width: 150px;
-  height: 100px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
 .footer__item {
   margin-bottom: 5px;
 }
