@@ -38,7 +38,7 @@ function Maincontainer() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar setUrlApi={setUrlApi} />
       <Carousel />
       <GenresList setFilterMovie={setFilterMovie} />
       <CardList listItem={listItem} />

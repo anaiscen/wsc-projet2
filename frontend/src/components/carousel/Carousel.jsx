@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 import { useChoice } from "../../contexts/ChoiceContext";
 
 function Carousel() {
+  const { choice } = useChoice();
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
-  const { choice } = useChoice();
-
   useEffect(() => {
     const getApi = () => {
       axios

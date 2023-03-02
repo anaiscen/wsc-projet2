@@ -1,12 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import YouTube from "react-youtube";
 import { useChoice } from "../../contexts/ChoiceContext";
 import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
 import "./ItemInfo.css";
+import trailermanquant from "../../assets/trailermanquant.png";
 
-// const movieId = 505642;
 const url = import.meta.env.VITE_API_URL;
 const keyUrl = import.meta.env.VITE_API_KEY;
 
@@ -15,6 +14,8 @@ function ItemInfo() {
   const [getVideo, setGetVideo] = useState([]);
   const { id } = useParams();
   const { choice } = useChoice();
+  const videoId = getVideo?.key ? getVideo.key : null;
+
   useEffect(() => {
     axios
       .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=fr-FR`)
@@ -25,7 +26,20 @@ function ItemInfo() {
     axios
       .get(`${url}/${choice}/${id}/videos?api_key=${keyUrl}`)
       .then((resp) => {
-        setGetVideo(resp.data.results[0]);
+        const ofTrailer = resp.data.results.find(
+          (vid) => vid.name === "Official Trailer"
+        );
+        const trailer = resp.data.results.find((vid) => vid.type === "Trailer");
+        const noTrailer = resp.data.results[0];
+        if (ofTrailer !== undefined) {
+          setGetVideo(ofTrailer);
+        } else if (trailer !== undefined) {
+          setGetVideo(trailer);
+        } else if (noTrailer !== undefined) {
+          setGetVideo(noTrailer);
+        } else {
+          setGetVideo(undefined);
+        }
       })
       .catch((err) => console.warn(err));
   }, [id]);
@@ -37,18 +51,25 @@ function ItemInfo() {
           alt="poster of movie"
           className="ItemInfo-poster"
         />
-        <div className="ItemInfo-box-video">
-          <div className="video">
-            <YouTube videoId={getVideo?.key ? getVideo.key : null} />
+        <div className="video-container">
+          <div className="video-responsive">
+            {videoId !== null ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+              />
+            ) : (
+              <img src={trailermanquant} alt="no Trailer" />
+            )}
           </div>
-
-          <div className="ItemInfo-retrouver">A retrouver sur</div>
+          <p className="ItemInfo-info">{getDetails.overview}</p>
         </div>
+        {/* <div className="ItemInfo-retrouver">A retrouver sur</div> */}
       </div>
 
-      <div className="ItemInfo-second">
-        <p className="ItemInfo-info">{getDetails.overview}</p>
-      </div>
       <div className="similar-movies-carousel">
         <CarouselSimilarMovies movieId={parseInt(id, 10)} />
       </div>

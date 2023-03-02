@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import "./CardItem.css";
 
 function CardItem({ results }) {
-  console.log(results);
   return (
     <div className="cardItem">
       <Link to={`/ItemInfo/${results.id}`}>

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
 
-const ChoiceContext = createContext(null);
+const ChoiceContext = createContext();
 
 export function useChoice() {
   return useContext(ChoiceContext);
