@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer">
       <img src={banner} alt="logo" className="footer__logo" />
       <div className="footer__container">
-        <p className="footer__p footer__item">Moviscope</p>
+        <p className="footer__p footer__item">Moviescope</p>
 
         <p className="footer__mentions footer__item">
           Données provenant de TMDB
