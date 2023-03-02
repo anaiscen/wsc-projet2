@@ -6,7 +6,7 @@ function NotFound() {
   return (
     <div>
       <p className="main-titre">
-        this page does not exist!!! click{" "}
+        This page does not exist !!! Click{" "}
         <Link to="/">
           <span className="title-click">here</span>
         </Link>{" "}
