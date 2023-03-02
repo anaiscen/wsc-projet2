@@ -14,7 +14,7 @@
 
 .search-bar-button {
   padding: 10px 20px;
-  background-color: #0077cc;
+  background: linear-gradient(0deg, var(--second-color) 0%, #3d90ddbe 75%);
   color: #fff;
   border: none;
   border-radius: 5px;

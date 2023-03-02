@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import YouTube from "react-youtube";
+import { useChoice } from "../../contexts/ChoiceContext";
 import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
 import "./ItemInfo.css";
 import WatchProviders from "./watchProviders/WatchProviders";
+import trailermanquant from "../../assets/trailermanquant.png";
 
-// const movieId = 505642;
 const url = import.meta.env.VITE_API_URL;
 const keyUrl = import.meta.env.VITE_API_KEY;
 
@@ -18,20 +18,36 @@ function ItemInfo() {
   ]);
 
   const { id } = useParams();
+  const { choice } = useChoice();
+  const videoId = getVideo?.key ? getVideo.key : null;
+
   useEffect(() => {
     axios
-      .get(`${url}/movie/${id}?api_key=${keyUrl}&language=fr-FR`)
+      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=fr-FR`)
       .then((response) => setGetDetails(response.data))
       .catch((err) => console.warn(err));
-  }, []);
+  }, [id]);
   useEffect(() => {
     axios
-      .get(`${url}/movie/${id}/videos?api_key=${keyUrl}`)
+      .get(`${url}/${choice}/${id}/videos?api_key=${keyUrl}`)
       .then((resp) => {
-        setGetVideo(resp.data.results[0]);
+        const ofTrailer = resp.data.results.find(
+          (vid) => vid.name === "Official Trailer"
+        );
+        const trailer = resp.data.results.find((vid) => vid.type === "Trailer");
+        const noTrailer = resp.data.results[0];
+        if (ofTrailer !== undefined) {
+          setGetVideo(ofTrailer);
+        } else if (trailer !== undefined) {
+          setGetVideo(trailer);
+        } else if (noTrailer !== undefined) {
+          setGetVideo(noTrailer);
+        } else {
+          setGetVideo(undefined);
+        }
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [id]);
   useEffect(() => {
     axios
       .get(
@@ -50,30 +66,6 @@ function ItemInfo() {
       })
       .catch((err) => console.warn(err));
   }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${url}/tv/${id}/watch/providers?api_key=${keyUrl}&watch_region="US"`
-  //     )
-  //     .then((response) => setAvailibility(response.data.results.US.flatrate))
-  //     .catch((err) => console.warn(err));
-  // }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${url}/movie/${id}/watch/providers?api_key=${keyUrl}&watch_region="US"`
-  //     )
-  //     .then((response) => setAvailibility(response.data.results.US.buy))
-  //     .catch((err) => console.warn(err));
-  // }, []);
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `${url}/movie/${id}/watch/providers?api_key=${keyUrl}&watch_region="US"`
-  //     )
-  //     .then((response) => setAvailibility(response.data.results.US.rent))
-  //     .catch((err) => console.warn(err));
-  // }, []);
 
   return (
     <div className="ItemInfo">
@@ -83,35 +75,39 @@ function ItemInfo() {
           alt="poster of movie"
           className="ItemInfo-poster"
         />
-        <div className="ItemInfo-box-video">
-          <YouTube videoId={getVideo?.key ? getVideo.key : null} />
 
-          <div className="ItemInfo-retrouver">
-            <p className="ItemInfo-retrouver-sur">A retrouver sur</p>
-            {availibility ? (
-              availibility.map((platform) => (
-                <WatchProviders
-                  key={id}
-                  name={platform.provider_name}
-                  image={platform.logo_path}
-                />
-              ))
+        <div className="video-container">
+          <div className="video-responsive">
+            {videoId !== null ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${videoId}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Embedded youtube"
+              />
             ) : (
-              <p> Pas encore disponible sur les plateformes</p>
+              <img src={trailermanquant} alt="no Trailer" />
             )}
+            <p className="item-info-title">A retrouver sur</p>
+            <div className="ItemInfo-retrouver">
+              {availibility ? (
+                availibility.map((platform) => (
+                  <WatchProviders key={id} image={platform.logo_path} />
+                ))
+              ) : (
+                <p> Pas encore disponible sur les plateformes</p>
+              )}
+            </div>
+            <p className="ItemInfo-info">{getDetails.overview}</p>
           </div>
         </div>
       </div>
 
-      <div className="ItemInfo-second">
-        <p className="ItemInfo-info">{getDetails.overview}</p>
-        {/* <p className="ItemInfo-resume">{getDetails.overview}</p> */}
-      </div>
       <div className="similar-movies-carousel">
-        <CarouselSimilarMovies movieId={id} />
+        <CarouselSimilarMovies movieId={parseInt(id, 10)} />
       </div>
     </div>
   );
 }
-
 export default ItemInfo;

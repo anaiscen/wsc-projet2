@@ -2,15 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./Carousel.css";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import { useChoice } from "../../contexts/ChoiceContext";
 
-function Carousel({ choice }) {
+function Carousel() {
+  const { choice } = useChoice();
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
-
   useEffect(() => {
     const getApi = () => {
       axios
@@ -57,7 +57,7 @@ function Carousel({ choice }) {
                 key={film.id}
                 src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
                 alt="poster"
-                className="poster-img"
+                className="poster-img-carousel"
               />
             </Link>
           ))}
@@ -76,7 +76,4 @@ function Carousel({ choice }) {
   );
 }
 
-Carousel.propTypes = {
-  choice: PropTypes.func.isRequired,
-};
 export default Carousel;

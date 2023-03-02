@@ -1,21 +1,20 @@
 import React from "react";
 import propTypes from "prop-types";
 import "./WatchProviders.css";
+import "../ItemInfo.css";
 
-function WatchProviders({ name, image }) {
+function WatchProviders({ image }) {
   return (
     <div className="provider__container">
-      <h2 className="provider__name">{name}</h2>
       <img
         src={`https://image.tmdb.org/t/p/w500${image}`}
-        alt={name}
+        alt="logo_provider"
         className="provider__image"
       />
     </div>
   );
 }
 WatchProviders.propTypes = {
-  name: propTypes.string.isRequired,
   image: propTypes.string.isRequired,
 };
 export default WatchProviders;
