@@ -13,7 +13,6 @@ function Navbar({ setChoice, setUrlApi }) {
   };
   const changeChoiceMovie = () => {
     setChoice("movie");
-    console.log("COUCOU");
   };
   const url = import.meta.env.VITE_API_URL;
   const keyUrl = import.meta.env.VITE_API_KEY;
