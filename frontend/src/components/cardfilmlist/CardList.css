@@ -4,3 +4,13 @@
   align-items: center;
   flex-wrap: wrap;
 }
+
+.no-results-message {
+  font-family: "Livvic", sans-serif;
+  font-size: 4vh;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px; 
+  border-radius: 5px;  
+  color: #d60808;
+}
