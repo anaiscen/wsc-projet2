@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./CardItem.css";
-import missingPoster from "./image-manquant.png";
+import missingPoster from "./poster.png";
 
 function CardItem({ results }) {
   return (
