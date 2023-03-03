@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./CardItem.css";
+import { Rate } from "antd";
 import missingPoster from "./poster.png";
 
 function CardItem({ results }) {
@@ -26,7 +27,14 @@ function CardItem({ results }) {
             )}
           </div>
           <div className="cardfilm-raiting">
-            notation: {results.vote_average}
+            <Rate
+              defaultValue={results.vote_average}
+              allowHalf
+              count={10}
+              style={{ fontSize: "14px" }}
+              disabled
+            />
+            {Math.floor(results.vote_average)}
           </div>
         </div>
       </Link>

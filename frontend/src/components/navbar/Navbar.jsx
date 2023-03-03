@@ -4,9 +4,6 @@ import PropTypes from "prop-types";
 import { useChoice } from "../../contexts/ChoiceContext";
 import "./recherchebar/Recherchbar.css";
 
-// retenter avec axios dans useEffect
-// route au click sur film/serie
-// call API au chargement de la page
 function Navbar({ setUrlApi }) {
   const { setChoice } = useChoice();
   const changeChoiceTV = () => {

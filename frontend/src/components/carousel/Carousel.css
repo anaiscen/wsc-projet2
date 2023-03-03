@@ -52,10 +52,11 @@
 .carousel-similar-movies-container {
   height: 150px;
   display: flex;
-  margin: 0 10px;
+  margin: 30px 10px;
   width: 95vw;
   overflow: hidden;
   flex-wrap: nowrap;
+  justify-content: center;
 }
 
 .carousel-similar-movies {
