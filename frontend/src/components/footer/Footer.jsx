@@ -9,12 +9,10 @@ function Footer() {
       <div className="footer__container">
         <p className="footer__p footer__item">Moviescope</p>
 
-        <p className="footer__mentions footer__item">
-          Données provenant de TMDB
-        </p>
-        <p className="footer__team footer__item">Créé par Nacom</p>
+        <p className="footer__mentions footer__item">Data provided by TMDB</p>
+        <p className="footer__team footer__item">Created by Nacom</p>
         <a href="mailto: xxx@gmail.com" className="footer__item">
-          Nous contacter
+          Contact us
         </a>
       </div>
       <a href="#header">

@@ -23,7 +23,7 @@ function ItemInfo() {
 
   useEffect(() => {
     axios
-      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=fr-FR`)
+      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=EN-US`)
       .then((response) => setGetDetails(response.data))
       .catch((err) => console.warn(err));
   }, [id]);
@@ -112,7 +112,7 @@ function ItemInfo() {
             ) : (
               <img src={trailermanquant} alt="no Trailer" />
             )}
-            <p className="item-info-title">A retrouver sur</p>
+            <p className="item-info-title">Where to watch ?</p>
             <div className="ItemInfo-retrouver">
               {availibility ? (
                 availibility.map((platform) => (
@@ -122,7 +122,7 @@ function ItemInfo() {
                   />
                 ))
               ) : (
-                <p> Pas encore disponible sur les plateformes</p>
+                <p> Not available yet</p>
               )}
             </div>
             <p className="ItemInfo-info">{getDetails.overview}</p>

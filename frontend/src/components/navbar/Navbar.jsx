@@ -40,7 +40,7 @@ function Navbar({ setUrlApi }) {
               type="button"
               onClick={changeChoiceMovie}
             >
-              Film
+              Films
             </button>
           </li>
           <li>
@@ -49,7 +49,7 @@ function Navbar({ setUrlApi }) {
               className="choice-button"
               onClick={changeChoiceTV}
             >
-              Séries
+              Series
             </button>
           </li>
         </ul>
@@ -66,7 +66,7 @@ function Navbar({ setUrlApi }) {
             onClick={handleSearch}
             className="search-bar-button"
           >
-            Chercher
+            Search
           </button>
         </div>
       </nav>
