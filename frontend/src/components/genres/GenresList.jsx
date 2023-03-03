@@ -37,8 +37,13 @@ function GenresList({ setFilterMovie }) {
   }, [choice]);
 
   const handleGenreClick = (genreId) => {
-    setSelectedGenreId(genreId);
-    setFilterMovie(genreId);
+    if (genreId === selectedGenreId) {
+      setSelectedGenreId(null);
+      setFilterMovie(null);
+    } else {
+      setSelectedGenreId(genreId);
+      setFilterMovie(genreId);
+    }
   };
 
   return (

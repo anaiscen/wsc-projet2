@@ -60,6 +60,7 @@ function Navbar({ setUrlApi }) {
             onChange={(event) => setQuery(event.target.value)}
             onKeyDown={handleKeyDown}
             className="search-bar-input"
+            placeholder="Avatar"
           />
           <button
             type="button"

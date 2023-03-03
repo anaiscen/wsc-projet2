@@ -40,9 +40,11 @@ function Maincontainer() {
     );
   }, [choice, filterMovie, pagination]);
 
+  useEffect(() => setFilterMovie(null), [choice]);
+
   return (
     <div>
-      <Navbar setUrlApi={setUrlApi} />
+      <Navbar setUrlApi={setUrlApi} filterMovie={setFilterMovie} />
       <Carousel />
       <GenresList setFilterMovie={setFilterMovie} />
       <CardList listItem={listItem} />
