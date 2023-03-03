@@ -11,7 +11,7 @@ function Genres({ name, onClick, id, isActive }) {
           value={id}
           onClick={onClick}
         >
-          SF & Fantastique
+          SF & Fantasy
         </button>
       ) : (
         <button

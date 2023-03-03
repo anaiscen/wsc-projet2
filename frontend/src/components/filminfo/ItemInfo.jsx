@@ -23,7 +23,7 @@ function ItemInfo() {
 
   useEffect(() => {
     axios
-      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=fr-FR`)
+      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=EN-US`)
       .then((response) => setGetDetails(response.data))
       .catch((err) => console.warn(err));
   }, [id]);
@@ -47,7 +47,8 @@ function ItemInfo() {
         }
       })
       .catch((err) => console.warn(err));
-  }, [id]);
+  }, [id, availibility]);
+
   useEffect(() => {
     axios
       .get(
@@ -56,16 +57,38 @@ function ItemInfo() {
       .then((response) => {
         if (response.data.results.US.rent !== undefined) {
           setAvailibility(response.data.results.US.rent);
+          console.log(availibility);
         } else if (response.data.results.US.rent === undefined) {
           setAvailibility(response.data.results.US.flatrate);
+          console.log(availibility);
         } else if (response.data.results.US.flatrate === undefined) {
           setAvailibility(response.data.results.US.buy);
-        } else if (response.data.results.US === undefined) {
-          setAvailibility();
+          console.log(availibility);
         }
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [id]);
+  // useEffect(() => {
+  //   if (
+  //     availibility.length === 1 &&
+  //     availibility[0].provider_name === "Pas encore disponible"
+  //   ) {
+  //     axios
+  //       .get(
+  //         `${url}/movie/${id}/watch/providers?api_key=${keyUrl}&watch_region="US"`
+  //       )
+  //       .then((response) => {
+  //         if (response.data.results.US.rent !== undefined) {
+  //           setAvailibility(response.data.results.US.rent);
+  //         } else if (response.data.results.US.rent === undefined) {
+  //           setAvailibility(response.data.results.US.flatrate);
+  //         } else if (response.data.results.US.flatrate === undefined) {
+  //           setAvailibility(response.data.results.US.buy);
+  //         }
+  //       })
+  //       .catch((err) => console.warn(err));
+  //   }
+  // }, [id, availibility]);
 
   return (
     <div className="ItemInfo">
@@ -89,14 +112,17 @@ function ItemInfo() {
             ) : (
               <img src={trailermanquant} alt="no Trailer" />
             )}
-            <p className="item-info-title">A retrouver sur</p>
+            <p className="item-info-title">Where to watch ?</p>
             <div className="ItemInfo-retrouver">
               {availibility ? (
                 availibility.map((platform) => (
-                  <WatchProviders key={id} image={platform.logo_path} />
+                  <WatchProviders
+                    key={platform.provider_id}
+                    image={platform.logo_path}
+                  />
                 ))
               ) : (
-                <p> Pas encore disponible sur les plateformes</p>
+                <p> Not available yet</p>
               )}
             </div>
             <p className="ItemInfo-info">{getDetails.overview}</p>

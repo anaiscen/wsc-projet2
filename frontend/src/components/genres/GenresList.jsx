@@ -19,7 +19,7 @@ function GenresList({ setFilterMovie }) {
   useEffect(() => {
     const getApiGenre = () => {
       axios
-        .get(`${url}/genre/${choice}/list?api_key=${keyUrl}&language=fr`)
+        .get(`${url}/genre/${choice}/list?api_key=${keyUrl}&language=en`)
         .then((response) => {
           const genresDelete = response.data.genres.filter((genre) => {
             return genre.id !== 10770;
