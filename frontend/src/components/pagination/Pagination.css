@@ -1,8 +1,9 @@
 .change-page-container {
   display: flex;
   justify-content: center;
-
+  flex-wrap: wrap;
   margin: 20px;
+  margin-bottom: 30px;
 }
 
 .btn-page:hover {
