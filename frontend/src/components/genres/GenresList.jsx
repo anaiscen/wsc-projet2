@@ -14,8 +14,6 @@ function GenresList({ setFilterMovie }) {
   const [alert, setAlert] = useState(false);
   const [selectedGenreId, setSelectedGenreId] = useState(null);
 
-  console.log(choice);
-
   useEffect(() => {
     const getApiGenre = () => {
       axios
@@ -26,7 +24,6 @@ function GenresList({ setFilterMovie }) {
           });
           setDataGenre(genresDelete);
           setIsLoading(true);
-          console.warn(response.data.genres);
         })
         .catch((err) => {
           setAlert(true);

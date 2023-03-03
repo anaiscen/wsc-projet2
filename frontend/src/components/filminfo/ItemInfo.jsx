@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useChoice } from "../../contexts/ChoiceContext";
 import CarouselSimilarMovies from "../carousel/CarouselSimilarMovies";
 import "./ItemInfo.css";
@@ -68,46 +68,51 @@ function ItemInfo() {
   }, []);
 
   return (
-    <div className="ItemInfo">
-      <div className="ItemInfo-first">
-        <img
-          src={`https://image.tmdb.org/t/p/w500${getDetails.poster_path}`}
-          alt="poster of movie"
-          className="ItemInfo-poster"
-        />
+    <>
+      <div className="linkHome">
+        <Link to="/">Home</Link>
+      </div>
+      <div className="ItemInfo">
+        <div className="ItemInfo-first">
+          <img
+            src={`https://image.tmdb.org/t/p/w500${getDetails.poster_path}`}
+            alt="poster of movie"
+            className="ItemInfo-poster"
+          />
 
-        <div className="video-container">
-          <div className="video-responsive">
-            {videoId !== null ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${videoId}`}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title="Embedded youtube"
-              />
-            ) : (
-              <img src={trailermanquant} alt="no Trailer" />
-            )}
-            <p className="item-info-title">A retrouver sur</p>
-            <div className="ItemInfo-retrouver">
-              {availibility ? (
-                availibility.map((platform) => (
-                  <WatchProviders key={id} image={platform.logo_path} />
-                ))
+          <div className="video-container">
+            <div className="video-responsive">
+              {videoId !== null ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Embedded youtube"
+                />
               ) : (
-                <p> Pas encore disponible sur les plateformes</p>
+                <img src={trailermanquant} alt="no Trailer" />
               )}
+              <p className="item-info-title">A retrouver sur</p>
+              <div className="ItemInfo-retrouver">
+                {availibility ? (
+                  availibility.map((platform) => (
+                    <WatchProviders key={id} image={platform.logo_path} />
+                  ))
+                ) : (
+                  <p> Pas encore disponible sur les plateformes</p>
+                )}
+              </div>
+              <p className="ItemInfo-info">{getDetails.overview}</p>
             </div>
-            <p className="ItemInfo-info">{getDetails.overview}</p>
           </div>
         </div>
-      </div>
 
-      <div className="similar-movies-carousel">
-        <CarouselSimilarMovies movieId={parseInt(id, 10)} />
+        <div className="similar-movies-carousel">
+          <CarouselSimilarMovies movieId={parseInt(id, 10)} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 export default ItemInfo;

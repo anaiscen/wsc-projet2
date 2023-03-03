@@ -25,7 +25,6 @@ function Maincontainer() {
     axios
       .get(getApiGenre)
       .then((response) => {
-        console.warn(response.data);
         setListItem(response.data.results);
         setPagination(response.data.page);
       })

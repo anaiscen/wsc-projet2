@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./CardItem.css";
+import { Rate } from "antd";
 
 function CardItem({ results }) {
   return (
     <div className="cardItem">
       <Link to={`/ItemInfo/${results.id}`}>
         <img
-          src={`https://image.tmdb.org/t/p/w500${results.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w300${results.poster_path}`}
           alt={results.title}
           className="cardfilm-poster"
         />
@@ -21,7 +22,14 @@ function CardItem({ results }) {
             )}
           </div>
           <div className="cardfilm-raiting">
-            notation: {results.vote_average}
+            <Rate
+              defaultValue={results.vote_average}
+              allowHalf
+              count={10}
+              style={{ fontSize: "14px" }}
+              disabled
+            />
+            {Math.floor(results.vote_average)}
           </div>
         </div>
       </Link>

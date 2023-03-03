@@ -63,6 +63,15 @@
 .ItemInfo-retrouver-sur {
   font-size: 30px;
 }
+.linkHome {
+  background-color: var(--background-color);
+  font-family: var(--font-family);
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding-left: 50px;
+  padding-top: 10px;
+}
 @media screen and (min-width: 426px) and (max-width: 785px) {
   .video-responsive iframe {
     height: 270px;

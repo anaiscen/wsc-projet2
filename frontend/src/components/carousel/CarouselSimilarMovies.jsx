@@ -42,7 +42,6 @@ function CarouselSimilarMovies({ movieId }) {
     setCurrentIndex((currentIndex + data.length - 1) % data.length);
   };
 
-  // console.log(displayData);
   const correctIndex = currentIndex % displayData.length;
   const filmsToShow = displayData.slice(correctIndex, correctIndex + 10);
   return (
