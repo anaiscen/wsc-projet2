@@ -8,7 +8,7 @@
 .carousel-container {
   height: 250px;
   display: flex;
-  margin: 0 10px;
+  margin: 0 5px 20px 5px;
   width: 95vw;
   overflow: hidden;
   flex-wrap: nowrap;
@@ -32,7 +32,7 @@
 .carousel-button {
   height: 50px;
   width: 50px;
-  background-color: var(--second-color);
+  background: linear-gradient(0deg, var(--second-color) 0%, #3d90ddbe 75%);
   border: 3px solid black;
   border-radius: 100%;
   display: flex;
