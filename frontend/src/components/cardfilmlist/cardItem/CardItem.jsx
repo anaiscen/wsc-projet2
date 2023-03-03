@@ -3,13 +3,18 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./CardItem.css";
 import { Rate } from "antd";
+import missingPoster from "./poster.png";
 
 function CardItem({ results }) {
   return (
     <div className="cardItem">
       <Link to={`/ItemInfo/${results.id}`}>
         <img
-          src={`https://image.tmdb.org/t/p/w300${results.poster_path}`}
+          src={
+            results.poster_path
+              ? `https://image.tmdb.org/t/p/w500${results.poster_path}`
+              : missingPoster
+          }
           alt={results.title}
           className="cardfilm-poster"
         />

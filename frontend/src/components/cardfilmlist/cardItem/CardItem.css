@@ -1,5 +1,5 @@
 .cardfilm {
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 50px;
 }
 .cardItem {
@@ -8,9 +8,15 @@
   height: 450px;
   text-align: center;
   padding-top: 8px;
-  background-color: var(--background-color);
+  background: linear-gradient(0deg, var(--second-color) 0%, #3d90ddbe 20%);
   margin: 10px;
+  transition: 0.4s ease-in-out;
 }
+
+.cardItem:hover {
+  transform: scale(1.03);
+}
+
 .cardfilm-poster {
   width: 230px;
   height: 350px;

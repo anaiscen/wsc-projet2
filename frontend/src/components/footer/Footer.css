@@ -1,11 +1,12 @@
 footer {
-  background-color: var(--background-color);
+  background-color: #01193b;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: var(--text-color);
   padding: 50px 20px 30px 20px;
   font-size: 14px;
+  border-top: 1px solid #01193b;
 }
 a {
   text-decoration: none;
@@ -29,11 +30,6 @@ a {
   justify-content: space-around;
   height: auto;
   padding: 5px 15px;
-}
-
-.footer__team:hover {
-  font-size: 15px;
-  transition: all 300ms ease-in;
 }
 
 .footer__item {

@@ -4,9 +4,6 @@ import PropTypes from "prop-types";
 import { useChoice } from "../../contexts/ChoiceContext";
 import "./recherchebar/Recherchbar.css";
 
-// retenter avec axios dans useEffect
-// route au click sur film/serie
-// call API au chargement de la page
 function Navbar({ setUrlApi }) {
   const { setChoice } = useChoice();
   const changeChoiceTV = () => {
@@ -40,7 +37,7 @@ function Navbar({ setUrlApi }) {
               type="button"
               onClick={changeChoiceMovie}
             >
-              Film
+              Films
             </button>
           </li>
           <li>
@@ -49,7 +46,7 @@ function Navbar({ setUrlApi }) {
               className="choice-button"
               onClick={changeChoiceTV}
             >
-              Séries
+              Series
             </button>
           </li>
         </ul>
@@ -60,13 +57,14 @@ function Navbar({ setUrlApi }) {
             onChange={(event) => setQuery(event.target.value)}
             onKeyDown={handleKeyDown}
             className="search-bar-input"
+            placeholder="Avatar"
           />
           <button
             type="button"
             onClick={handleSearch}
             className="search-bar-button"
           >
-            Chercher
+            Search
           </button>
         </div>
       </nav>

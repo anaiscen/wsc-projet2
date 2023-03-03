@@ -23,7 +23,7 @@ function ItemInfo() {
 
   useEffect(() => {
     axios
-      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=fr-FR`)
+      .get(`${url}/${choice}/${id}?api_key=${keyUrl}&language=EN-US`)
       .then((response) => setGetDetails(response.data))
       .catch((err) => console.warn(err));
   }, [id]);
@@ -47,7 +47,8 @@ function ItemInfo() {
         }
       })
       .catch((err) => console.warn(err));
-  }, [id]);
+  }, [id, availibility]);
+
   useEffect(() => {
     axios
       .get(
@@ -60,12 +61,10 @@ function ItemInfo() {
           setAvailibility(response.data.results.US.flatrate);
         } else if (response.data.results.US.flatrate === undefined) {
           setAvailibility(response.data.results.US.buy);
-        } else if (response.data.results.US === undefined) {
-          setAvailibility();
         }
       })
       .catch((err) => console.warn(err));
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -91,25 +90,32 @@ function ItemInfo() {
                   title="Embedded youtube"
                 />
               ) : (
-                <img src={trailermanquant} alt="no Trailer" />
+                <img
+                  className="video-responsive"
+                  src={trailermanquant}
+                  alt="no Trailer"
+                />
               )}
-              <p className="item-info-title">A retrouver sur</p>
+              <p className="item-info-title">Where to watch ?</p>
               <div className="ItemInfo-retrouver">
                 {availibility ? (
                   availibility.map((platform) => (
-                    <WatchProviders key={id} image={platform.logo_path} />
+                    <WatchProviders
+                      key={platform.provider_id}
+                      image={platform.logo_path}
+                    />
                   ))
                 ) : (
-                  <p> Pas encore disponible sur les plateformes</p>
+                  <p> Not available yet</p>
                 )}
+                <p className="ItemInfo-info">{getDetails.overview}</p>
               </div>
-              <p className="ItemInfo-info">{getDetails.overview}</p>
             </div>
           </div>
-        </div>
 
-        <div className="similar-movies-carousel">
-          <CarouselSimilarMovies movieId={parseInt(id, 10)} />
+          <div className="similar-movies-carousel">
+            <CarouselSimilarMovies movieId={parseInt(id, 10)} />
+          </div>
         </div>
       </div>
     </>
